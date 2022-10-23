@@ -16,17 +16,17 @@ describe('SongList tests', () => {
     expect(findByTestID(songList, 'SongList')).toBeTruthy;
   });
   it('SongList has a flatList', () => {
-    expect(findAllByType({ children: songList }, 'RCTScrollView').length).toBeGreaterThanOrEqual(1);
+    expect(findAllByType(songList, 'RCTScrollView').length).toBeGreaterThanOrEqual(1);
   });
   it('SongList has "My Top Tracks" text component', () => {
     expect(
-      findAllByType({ children: songList }, 'Text').some((text) =>
+      findAllByType(songList, 'Text').some((text) =>
         text.children.some((child) => child === 'My Top Tracks')
       )
     ).toBeTruthy();
   });
   it('SongList "My Top Tracks" component has the right font color', () => {
-    findAllByType({ children: songList }, 'Text').forEach((text) => {
+    findAllByType(songList, 'Text').forEach((text) => {
       if (text.children === 'My Top Tracks') {
         expect(text.props.style.color).toBe(Themes.colors.text);
       }

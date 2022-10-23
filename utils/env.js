@@ -1,9 +1,9 @@
 import { Platform } from "react-native";
 
 // ***** TODO 1: Fill in your constants here ***** //
-const CLIENT_ID = "";
-const REDIRECT_URI = "";
-const ALBUM_ID = "2nLOHgzXzwFEpl62zAgCEC?si=92gvi84ZTLKfMD-YgYWAUw"; // By default, this is the Weeknd's Album's "DAWN FM"
+const CLIENT_ID = "e1cfe1f0dcc6441a958267d47648ae7b";
+const REDIRECT_URI = "exp://192.168.1.140:19000";
+const ALBUM_ID = "0czz3JC1gApwAelA3nphMt?si=NiQFQCt6SMKEEkPPUm9WIQ"; // By default, this is the Weeknd's Album's "DAWN FM"
 // ********************************************* //
 
 const redirectUri = (uri) => {
@@ -16,7 +16,7 @@ const redirectUri = (uri) => {
 };
 
 const ENV = {
-  CLIENT_ID: "ce792b478e6143d396d126a60eb46a76",
+  CLIENT_ID: CLIENT_ID,
   SCOPES: [
     "user-read-currently-playing",
     "user-read-recently-played",
@@ -28,8 +28,8 @@ const ENV = {
     "user-read-private",
   ],
   // TODO 2: Read the spec and add your own redirect uri
-  REDIRECT_URI: redirectUri(/*remove this comment & add your uri here!*/),
-  ALBUM_ID: "2nLOHgzXzwFEpl62zAgCEC?si=92gvi84ZTLKfMD-YgYWAUw",
+  REDIRECT_URI: redirectUri(REDIRECT_URI),
+  ALBUM_ID: ALBUM_ID,
   SPOTIFY_API: {
     // Endpoints for auth & token flow
     DISCOVERY: {
