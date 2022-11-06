@@ -1,12 +1,23 @@
-import { StyleSheet, Text, Image, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View, useWindowDimensions, Pressable } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'; 
 import { Themes } from '../assets/Themes';
 
-export default function Song({ trackNumber, image, songTitle, songArtist, albumName, songDuration }) {
+export default function Song({ navigation, previewUrl, externalUrl, image, songTitle, songArtist, albumName, songDuration }) {
     const { height, width } = useWindowDimensions(); 
 
     return (
-        <View style={styles.container}>
-            <Text numberOfLines={1} style={[styles.text, styles.track_number]}>{trackNumber}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Song details', { url: externalUrl })}  style={styles.container}>
+            {/* <Text numberOfLines={1} style={[styles.text, styles.track_number]}>{trackNumber}</Text> */}
+            <Pressable
+                style={{ ...styles.pressable }}
+                onPress={(e) => {
+                    e.stopPropagation();
+                    navigation.navigate('Song preview', {url: previewUrl});
+
+                }}
+            >
+                <AntDesign name="play" size={16} color="#1DB954" />
+            </Pressable>
             <Image style={{ ...styles.image, width: image.width, height: image.height }} source={{ uri: image.url}} />
             <View style={[styles.title_artist]}>
                 <Text numberOfLines={1} style={styles.text}>{songTitle}</Text>
@@ -14,7 +25,7 @@ export default function Song({ trackNumber, image, songTitle, songArtist, albumN
             </View>
             <Text numberOfLines={1} style={[styles.text, styles.album_name]}>{albumName}</Text>
             <Text numberOfLines={1} style={[styles.text, styles.song_duration]}>{songDuration}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -26,10 +37,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 10,
     },
-    track_number: {
+    pressable: {
         flex: 2,
-        textAlign: 'center',
-    },
+        alignItems: 'center',
+    },  
+    // track_number: {
+    //     flex: 2,
+    //     textAlign: 'center',
+    // },
     title_artist: {
         flex: 4.5,
         marginRight: 15,

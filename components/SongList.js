@@ -3,11 +3,14 @@ import { Themes, Images } from '../assets/Themes';
 import Song from './Song';
 import { millisToMinutesAndSeconds } from '../utils';
 
-export default function SongList({ tracks }) {
+export default function SongList({ tracks, navigation }) {
     const { height, width } = useWindowDimensions();
 
     const renderItem = ({ item }) => (
         <Song
+            navigation={navigation}
+            previewUrl={item.preview_url}
+            externalUrl={item.external_urls.spotify}
             trackNumber={item.track_number}
             image={item.album.images[2]}
             songTitle={item.name}
@@ -39,6 +42,7 @@ export default function SongList({ tracks }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: Themes.colors.background,
         flexDirection: 'column',
     },
     title: {
